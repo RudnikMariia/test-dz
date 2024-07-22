@@ -24,29 +24,36 @@
         </div>
       </b-col>
     </b-row>
-  </div>
-  <b-modal size="lg" hide-footer v-model="isShow" id="modal-delete" title-class="modal-title" :title="$t('deleteConfirm')">
-    <div v-if="selectProduct" class="d-flex align-items-center">
-      <div
-          class="status-indicator mr-3"
-          :class="{
+    <b-modal
+        size="lg"
+        hide-footer
+        v-model="isShow"
+        id="modal-delete"
+        title-class="modal-title"
+        :title="$t('deleteConfirm')"
+    >
+      <div v-if="selectProduct" class="d-flex align-items-center">
+        <div
+            class="status-indicator mr-3"
+            :class="{
                   'bg-danger': selectProduct.status === 'в ремонте'
                 }"
-          style="width: 10px; height: 10px; border-radius: 50%;"
-      ></div>
-      <div>
-        <img class="product-img" src="/product.png" alt="product" width="50">
+            style="width: 10px; height: 10px; border-radius: 50%;"
+        ></div>
+        <div>
+          <img class="product-img" src="/product.png" alt="product" width="50">
+        </div>
+        <div class="product-name-wrap">
+          <div class="product-name">{{ selectProduct.name }}</div>
+          <div class="product-text">{{ selectProduct.serial_number }}</div>
+        </div>
       </div>
-      <div class="product-name-wrap">
-        <div class="product-name">{{ selectProduct.name }}</div>
-        <div class="product-text">{{ selectProduct.serial_number }}</div>
+      <div class="footer-modal d-flex justify-content-end align-items-center">
+        <div class="btn-cansel" @click="hideModal">{{ $t('cansel') }}</div>
+        <div class="btn-delete"><img class="delete-btn" src="/delete-red.png" alt="delete" width="15" height="15">{{ $t('delete') }}</div>
       </div>
-    </div>
-    <div class="footer-modal d-flex justify-content-end align-items-center">
-      <div class="btn-cansel" @click="hideModal">{{ $t('cansel') }}</div>
-      <div class="btn-delete"><img class="delete-btn" src="/delete-red.png" alt="delete" width="15" height="15">{{ $t('delete') }}</div>
-    </div>
-  </b-modal>
+    </b-modal>
+  </div>
 </template>
 
 <script setup>

@@ -23,7 +23,7 @@
             leave-active-class="animate__animated animate__fadeOutLeft"
             mode="out-in"
         >
-          <router-view />
+          <router-view :key="$router.currentRoute.name"/>
         </transition>
       </div>
     </div>
@@ -32,6 +32,7 @@
 
 <script setup>
 import Header from '../components/HeaderComp.vue';
+import 'animate.css';
 </script>
 
 <style>

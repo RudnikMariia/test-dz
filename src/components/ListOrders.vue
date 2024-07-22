@@ -1,12 +1,10 @@
 <template>
   <div class="d-flex">
-    <transition :duration="1000">
-      <div class="orders-list" :class="{'orders-list-min': selectedOrder && selectedId}">
-        <div v-for="order in orders" :key="order.id">
-          <order-item :order="order" @selectCard="selectCard" :selectedId="selectedId"/>
-        </div>
+    <div class="orders-list" :class="{'orders-list-min': selectedOrder && selectedId}">
+      <div v-for="order in orders" :key="order.id">
+        <order-item :order="order" @selectCard="selectCard" :selectedId="selectedId"/>
       </div>
-    </transition>
+    </div>
     <transition name="fade">
       <div class="products-list" v-if="selectedOrder && selectedId">
         <div class="product-items pt-3">
@@ -101,7 +99,7 @@ function clearSelected () {
 
 .orders-list {
   width: 100%;
-  transition: width 1s ease;
+  transition: width 4s ease;
 }
 
 .products-list {
