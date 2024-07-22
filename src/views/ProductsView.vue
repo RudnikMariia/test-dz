@@ -3,26 +3,29 @@
     <b-row>
       <b-col class="main-content pt-4">
         <div class="filters d-flex mb-3">
-          <span class="product-title">Продукты / 25</span>
+          <span class="product-title">{{ $t('products') }} / 25</span>
           <span class="product-type d-flex align-items-center">
-            <label for="type-select">Тип:</label>
+            <label for="type-select">{{ $t('type') }}:</label>
             <b-form-select id="type-select" class="d-inline-block product-select">
               <option>Moni I</option>
             </b-form-select>
           </span>
           <span class="d-flex align-items-center">
-            <label for="specification-select">Спецификация:</label>
+            <label for="specification-select">{{ $t('specification') }}:</label>
             <b-form-select id="specification-select" class="d-inline-block product-select">
               <option>Moni I</option>
-              <!-- Add more options as needed -->
             </b-form-select>
           </span>
         </div>
-        <list-products @onDelete="onDelete" :products="products"/>
+        <div class="product-list">
+          <b-card v-for="product in products" :key="product.id" class="product-item mb-3 fit-content">
+            <product-item :product="product" @onDelete="onDelete"></product-item>
+          </b-card>
+        </div>
       </b-col>
     </b-row>
   </div>
-  <b-modal size="lg" hide-footer v-model="isShow" id="modal-delete" title-class="modal-title" title="Вы уверены, что хотите удалить этот приход?">
+  <b-modal size="lg" hide-footer v-model="isShow" id="modal-delete" title-class="modal-title" :title="$t('deleteConfirm')">
     <div v-if="selectProduct" class="d-flex align-items-center">
       <div
           class="status-indicator mr-3"
@@ -40,8 +43,8 @@
       </div>
     </div>
     <div class="footer-modal d-flex justify-content-end align-items-center">
-      <div class="btn-cansel" @click="hideModal">ОТМЕНИТЬ</div>
-      <div class="btn-delete"><img class="delete-btn" src="/delete-red.png" alt="delete" width="15" height="15"> УДАЛИТЬ</div>
+      <div class="btn-cansel" @click="hideModal">{{ $t('cansel') }}</div>
+      <div class="btn-delete"><img class="delete-btn" src="/delete-red.png" alt="delete" width="15" height="15">{{ $t('delete') }}</div>
     </div>
   </b-modal>
 </template>
@@ -49,7 +52,7 @@
 <script setup>
 import { useStore } from 'vuex'
 import { computed, ref } from 'vue'
-import ListProducts from "@/components/ListProducts";
+import ProductItem from "@/components/ProductItem";
 const store = useStore()
 
 store.dispatch('products/fetchProducts')
@@ -72,6 +75,14 @@ function hideModal() {
 </script>
 
 <style scoped>
+.fit-content {
+  min-width: fit-content;
+  width: 100%;
+}
+.product-list {
+  font-size: 14px;
+  width: fit-content;
+}
 .btn-cansel {
   cursor: pointer;
 }

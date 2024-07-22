@@ -6,7 +6,7 @@
         <div class="user-info d-flex align-items-center my-3 justify-content-center">
           <b-img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="User" rounded="circle" width="80" height="80" class="mr-2"></b-img>
         </div>
-        <nav class="d-flex flex-column">
+        <nav class="d-flex flex-column text-uppercase">
           <router-link to="/orders">
             {{ $t('orders') }}
             <div class="link-underline"></div>
@@ -18,7 +18,13 @@
         </nav>
       </div>
       <div class="main-content w-100 pt-4">
-        <router-view />
+        <transition
+            enter-active-class="animate__animated animate__fadeInLeft"
+            leave-active-class="animate__animated animate__fadeOutLeft"
+            mode="out-in"
+        >
+          <router-view />
+        </transition>
       </div>
     </div>
   </div>
@@ -29,6 +35,15 @@ import Header from '../components/HeaderComp.vue';
 </script>
 
 <style>
+.fade-router-enter-active,
+.fade-router-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-router-enter-from,
+.fade-router-leave-to {
+  opacity: 0;
+}
 nav {
   padding: 30px;
   text-align: center;

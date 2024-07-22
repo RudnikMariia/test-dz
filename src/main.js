@@ -8,13 +8,13 @@ import { createI18n } from 'vue-i18n'
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue-3/dist/bootstrap-vue-3.css"
 
-import en from "/src/locales/en"
+import ru from "/src/locales/ru"
 
 const i18n = createI18n({
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'ru',
+  fallbackLocale: 'ru',
   messages: {
-    en
+    ru
   }
 })
 
