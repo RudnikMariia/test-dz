@@ -22,7 +22,7 @@
       </b-col>
     </b-row>
   </div>
-  <b-modal size="lg" hide-footer v-model="isShow" id="modal-delete">
+  <b-modal size="lg" hide-footer v-model="isShow" id="modal-delete" title-class="modal-title" title="Вы уверены, что хотите удалить этот приход?">
     <div v-if="selectProduct" class="d-flex align-items-center">
       <div
           class="status-indicator mr-3"
@@ -40,8 +40,8 @@
       </div>
     </div>
     <div class="footer-modal d-flex justify-content-end align-items-center">
-      <div>ОТМЕНИТЬ</div>
-      <div class="btn-delete"><img class="delete-btn" src="/delete-white.png" alt="delete" width="15" height="15"> УДАЛИТЬ</div>
+      <div class="btn-cansel" @click="hideModal">ОТМЕНИТЬ</div>
+      <div class="btn-delete"><img class="delete-btn" src="/delete-red.png" alt="delete" width="15" height="15"> УДАЛИТЬ</div>
     </div>
   </b-modal>
 </template>
@@ -63,23 +63,39 @@ let selectProduct = null;
 const onDelete = (product) => {
   isShow.value = true;
   selectProduct = {...product};
-  console.log(selectProduct)
 };
 
+function hideModal() {
+  isShow.value = false;
+}
 
 </script>
 
 <style scoped>
+.btn-cansel {
+  cursor: pointer;
+}
 .footer-modal {
   background: #87BF48;
   color: white;
   height: 80px;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  margin: 20px -16px -16px;
 }
 .btn-delete {
   background: white;
-  color: #dc3545;
+  color: #E8364F;
+  align-items: center;
+  display: flex;
+  padding: 10px 20px;
   border-radius: 50px;
+  margin: 0 40px 0 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.delete-btn {
+  margin-right: 6px;
 }
 .status-indicator {
   width: 10px;
@@ -91,13 +107,14 @@ const onDelete = (product) => {
 }
 .product-img {
   height: fit-content;
-  margin: 0 60px 0 5px;
+  margin: 0 60px 0 20px;
 }
 .product-name {
   text-decoration: underline;
+  font-size: 14px;
 }
 .product-text {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 300;
 }
 .inventory-layout {

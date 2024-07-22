@@ -8,11 +8,11 @@
         </div>
         <nav class="d-flex flex-column">
           <router-link to="/orders">
-            ПРИХОД
+            {{ $t('orders') }}
             <div class="link-underline"></div>
           </router-link>
           <router-link to="/products">
-            ПРОДУКТЫ
+            {{ $t('products') }}
             <div class="link-underline"></div>
           </router-link>
         </nav>
