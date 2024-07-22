@@ -8,6 +8,7 @@ import { createI18n } from 'vue-i18n'
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue-3/dist/bootstrap-vue-3.css"
 
+// @ts-ignore
 import ru from "/src/locales/ru"
 
 const i18n = createI18n({

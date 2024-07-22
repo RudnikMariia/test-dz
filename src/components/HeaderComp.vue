@@ -5,17 +5,42 @@
     </div>
     <div class="text-right">
       <div class="datetime">
-        <div>Вторник</div>
-        <div class="d-flex align-items-center">06 Апр, 2017 <img class="time-img" src="/time.png" alt="time"> 17:20</div>
+        <div class="weekday">{{ currentDay }}</div>
+        <div class="d-flex align-items-center">
+          {{ currentDate }} <img class="time-img" src="/time.png" alt="time"> {{ currentTime }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import {ref, onMounted, onUnmounted} from 'vue';
+
+const currentTime = ref<string>('');
+const currentDate = ref<string>('');
+const currentDay = ref<string>('');
+
+const updateDateTime = () => {
+  const now = new Date();
+  currentDay.value = now.toLocaleDateString('uk-UA', {weekday: 'long'});
+  currentDate.value = now.toLocaleDateString('uk-UA', {day: '2-digit', month: 'short', year: 'numeric'});
+  currentTime.value = now.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'});
+};
+
+onMounted(() => {
+  updateDateTime();
+  const interval = setInterval(updateDateTime, 1000);
+  onUnmounted(() => {
+    clearInterval(interval);
+  });
+});
 </script>
 
 <style scoped>
+.weekday {
+  text-transform: capitalize;
+}
 .header {
   padding-left: 140px;
   padding-right: 100px;
@@ -23,9 +48,11 @@
   z-index: 10;
   position: relative;
 }
+
 .text-right {
   font-size: 12px;
 }
+
 .time-img {
   width: 12px;
   height: 12px;

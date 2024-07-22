@@ -3,8 +3,8 @@
     <div
         class="status-indicator mr-3"
         :class="{
-                  'bg-danger': product.status === 'в ремонте'
-                }"
+        'bg-danger': product.status === 'в ремонте'
+      }"
         style="width: 10px; height: 10px; border-radius: 50%;"
     ></div>
     <div>
@@ -39,18 +39,18 @@
   </b-card-body>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue'
+import { Product } from "@/types";
 
-defineProps({
-  product: {
-    type: Object
-  }
-})
-const emit = defineEmits(['onDelete'])
+defineProps<{
+  product: Product;
+}>();
 
-function onDelete(product) {
-  emit('onDelete', product)
+const emit = defineEmits({});
+
+function onDelete(product: Product) {
+  emit('onDelete', product);
 }
 </script>
 

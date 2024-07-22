@@ -1,9 +1,9 @@
-import {createRouter, createWebHistory} from 'vue-router';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import DefaultLayout from '../layouts/DefaultLayout.vue';
 import OrdersView from '../views/OrdersView.vue';
 import ProductsView from '../views/ProductsView.vue';
 
-const routes = [
+const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         component: DefaultLayout,
@@ -17,7 +17,8 @@ const routes = [
                 path: '/products',
                 name: 'products',
                 component: ProductsView
-            }]
+            }
+        ]
     }
 ];
 
